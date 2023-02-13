@@ -1,0 +1,16 @@
+{
+  "type" : "record",
+  "namespace" : "Result",
+  "name" : "MatchResult",
+  "fields" : [
+    { "name" : "date" , "type" : "string" },
+    { "name" : "homeTeam" , "type" : "string" },
+    { "name" : "awayTeam" , "type" : "string" },
+    { "name" : "homeScore" , "type" : "int" },
+    { "name" : "awayScore" , "type" : "int" },
+    { "name" : "tournament" , "type" : "string" },
+    { "name" : "city" , "type" : "string" },
+    { "name" : "country" , "type" : "string" },
+    { "name" : "neutral" , "type" : "boolean" }
+  ]
+}

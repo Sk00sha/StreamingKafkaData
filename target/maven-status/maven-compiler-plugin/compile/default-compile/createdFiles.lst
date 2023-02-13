@@ -1,0 +1,11 @@
+org\sk00sha\Admin\TopicCreator.class
+org\sk00sha\Main.class
+ShoppingData\ShoppingItem.class
+org\sk00sha\Producer\ShoppingItemProducer.class
+GoalScored\GoalScorer$Builder.class
+Result\MatchResult$Builder.class
+org\sk00sha\Configuration\KafkaConfig.class
+ShoppingData\ShoppingItem$Builder.class
+Result\MatchResult.class
+GoalScored\GoalScorer.class
+org\sk00sha\Reader\CsvReader.class

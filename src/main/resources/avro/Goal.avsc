@@ -1,0 +1,15 @@
+{
+"type" : "record",
+"namespace" : "GoalScored",
+"name" : "GoalScorer",
+"fields" : [
+{ "name" : "date" , "type" : "string" },
+{ "name" : "homeTeam" , "type" : "string" },
+{ "name" : "awayTeam" , "type" : "string" },
+{ "name" : "teamScored" , "type" : "string" },
+{ "name" : "scorerName" , "type" : "string" },
+{ "name" : "minute" , "type" : "string" },
+{ "name" : "ownGoal" , "type" : "boolean" },
+{ "name" : "penalty" , "type" : "boolean" }
+]
+}
