@@ -18,7 +18,7 @@ public class TopicCreator {
     }
 
     /**
-     * 
+     *
      * @param topicName - specify name of topic to be created
      */
     public static void createTopic(String topicName){

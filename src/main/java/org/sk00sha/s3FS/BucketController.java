@@ -8,11 +8,16 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.Bucket;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 
 public class BucketController {
+    private final AmazonS3 client;
+    {
+        this.client=configureClient();
+    }
     public BucketController() throws IOException {
 
     }
@@ -36,12 +41,22 @@ public class BucketController {
     return s3client;
     }
 
-    public  void checkAvailabilityOfBucketName(){
-        String bucketName = "tramtararaaa";
-
-        List<Bucket> buckets = configureClient().listBuckets();
-        for(Bucket bucket : buckets) {
-            System.out.println(bucket.getName());
+    private  boolean checkAvailabilityOfBucketName(String bucketName){
+        if(this.client.doesBucketExist(bucketName)) {
+            return true;
+        }
+        return false;
+    }
+    public void uploadToBucket(String bucketName,String fileName){
+        if(checkAvailabilityOfBucketName(bucketName)){
+            this.client.putObject(
+                    bucketName,
+                    fileName,
+                    new File(fileName)
+            );
+        }
+        else{
+            System.out.println("File or "+fileName+" this bucket "+bucketName+" doesn't exist");
         }
     }
 }

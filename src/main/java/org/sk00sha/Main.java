@@ -11,15 +11,16 @@ public class Main {
     public static void main(String[] args)  {
         try{
             final String TOPIC="quickstart";
-            BucketController bucketController=new BucketController();
-            bucketController.checkAvailabilityOfBucketName();
-           /* KafkaConfig config=new KafkaConfig("localhost:9092");
+            final String bucketName="match-result-test-bucket";
+
+            KafkaConfig config=new KafkaConfig("localhost:9092");
             TopicCreator.setAdminProperties(config.getClientProps());
 
-            //MatchProducer producerForMatches=new MatchProducer(config.getProducerProps(),"src/main/resources/sourceFiles/results.csv");
-            //producerForMatches.produceMessages(TOPIC);
+            MatchProducer producerForMatches=new MatchProducer(config.getProducerProps(),"src/main/resources/sourceFiles/results.csv");
+            producerForMatches.produceMessages(TOPIC);
+
             MatchDataConsumer consumer=new MatchDataConsumer(config.getConsumerProps());
-            consumer.ConsumeDataFromTopic(TOPIC);*/
+            consumer.ConsumeDataFromTopic(TOPIC,bucketName);
         }
         catch (Exception e){
             System.out.println(e);
