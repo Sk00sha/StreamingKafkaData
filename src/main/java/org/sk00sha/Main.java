@@ -20,7 +20,7 @@ public class Main {
             producerForMatches.produceMessages(TOPIC);
 
             MatchDataConsumer consumer=new MatchDataConsumer(config.getConsumerProps());
-            consumer.ConsumeDataFromTopic(TOPIC,bucketName);
+            consumer.consumeDataFromTopic(TOPIC,bucketName);
         }
         catch (Exception e){
             System.out.println(e);
