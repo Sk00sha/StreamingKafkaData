@@ -9,6 +9,9 @@ import org.sk00sha.s3FS.BucketController;
 
 public class Main {
     public static void main(String[] args)  {
+        /**
+         * TODO - setup multithreaded implementation of consumer and producer
+         */
         try{
             final String TOPIC="quickstart";
             final String bucketName="match-result-test-bucket";
