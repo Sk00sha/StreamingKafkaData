@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 
-
+/**
+ * Controller for data upload to S3 when data is consumed from topic
+ */
 public class BucketController {
     private final AmazonS3 client;
     {
