@@ -11,3 +11,6 @@ Finally, we create a crawler and then analyse the data in AWS athena.
 4. Consume the data and send it to s3 buckets.
 5. Create crawler in AWS glue.
 6. Setup AWS Athena for data analysis.
+7. 
+## Simple architecture diagram
+![alt text](https://github.com/Sk00sha/StreamingKafkaData/blob/master/Diagram.PNG)
