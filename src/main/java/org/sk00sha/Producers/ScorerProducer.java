@@ -2,6 +2,7 @@ package org.sk00sha.Producers;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.sk00sha.Pojos.GoalScorer;
 import org.sk00sha.Pojos.MatchResult;
 import org.sk00sha.Util.BatchConvertor;
 
@@ -23,17 +24,17 @@ public class ScorerProducer extends BatchConvertor {
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(this.kafkaProdProps);
 
-        List<MatchResult> matchResults=transformBatchDataMatchesToIndividualMatchResults(this.fileSource);
+        List<GoalScorer> goalsScored=transformBatchGoalsToStream(this.fileSource);
 
-        for (MatchResult matchResult : matchResults) {
-            ProducerRecord<String,String> matchRecord=new ProducerRecord<>(topicName,0,"match",matchResult.toString());
+        for (GoalScorer goalScorer : goalsScored) {
+            ProducerRecord<String,String> goalRecord=new ProducerRecord<>(topicName,0,"goal",goalScorer.toString());
 
-            System.out.println("Published message: key=" + matchRecord.key() +
-                    ", value=" + matchRecord.value() +
-                    ", topic=" + matchRecord.topic() +
-                    ", partition=" + matchRecord.partition());
+            System.out.println("Published message: key=" + goalRecord.key() +
+                    ", value=" + goalRecord.value() +
+                    ", topic=" + goalRecord.topic() +
+                    ", partition=" + goalRecord.partition());
             try{
-                producer.send(matchRecord);
+                producer.send(goalRecord);
             }
             catch(RuntimeException e){
                 System.out.println("We caught and exception while producing match data Exception text:{ "+e.getMessage()+" }");

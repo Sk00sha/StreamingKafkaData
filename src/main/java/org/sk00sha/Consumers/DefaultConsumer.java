@@ -33,12 +33,10 @@ abstract public class DefaultConsumer {
                 Date dt=new Date();
                 String fileName=dt.getTime()/1000 +getFileProps()+".json";
                 File myNewFile=new File(fileName);
-                try(FileWriter fw=new FileWriter(myNewFile);
-                    BufferedWriter writer=new BufferedWriter(fw);
-                )
-                {
-                    writer.write(record.value());
-                }
+                try(FileWriter fw=new FileWriter(myNewFile); BufferedWriter writer=new BufferedWriter(fw))
+                    {
+                        writer.write(record.value());
+                    }
                 System.out.println("Key-> "+record.key()+" Value-> "+record.value()+" {TOPIC_NAME-> "+record.topic()+" }");
                 bucketController.uploadToBucket(bucketToUpload,fileName);
 

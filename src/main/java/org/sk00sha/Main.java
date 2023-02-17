@@ -6,6 +6,8 @@ import org.sk00sha.Consumers.MatchDataConsumer;
 import org.sk00sha.Producers.MatchProducer;
 import org.sk00sha.s3FS.BucketController;
 
+import java.io.IOException;
+
 
 public class Main {
     public static void main(String[] args)  {
@@ -19,11 +21,24 @@ public class Main {
             KafkaConfig config=new KafkaConfig("localhost:9092");
             TopicCreator.setAdminProperties(config.getClientProps());
 
+        new Thread(() -> {
             MatchProducer producerForMatches=new MatchProducer(config.getProducerProps(),"src/main/resources/sourceFiles/results.csv");
-            producerForMatches.produceMessages(TOPIC);
+            try {
+                producerForMatches.produceMessages(TOPIC);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
 
+        new Thread(()->{
             MatchDataConsumer consumer=new MatchDataConsumer(config.getConsumerProps());
-            consumer.consumeDataFromTopic(TOPIC,bucketName);
+            try {
+                consumer.consumeDataFromTopic(TOPIC,bucketName);
+            } catch (InterruptedException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+
         }
         catch (Exception e){
             System.out.println(e);
